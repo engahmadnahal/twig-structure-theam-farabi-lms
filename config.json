@@ -1,0 +1,40 @@
+{
+  "theme": {
+    "name": "Farabi First Theme",
+    "version": "1.0.0",
+    "description": "Farabi Academy - Online Learning Platform Theme"
+  },
+  "colors": {
+    "pistachio": "#93c572",
+    "pistachio_dark": "#7db157",
+    "navy": "#1e3a5f",
+    "navy_dark": "#152a45"
+  },
+  "fonts": {
+    "heading": "Quicksand",
+    "body": "Nunito"
+  },
+  "site": {
+    "name": "Farabi Academy",
+    "logo_text": "FA",
+    "email": "info@farabiacademy.com",
+    "phone": "+1 (555) 123-4567",
+    "address": "123 Education Street, Learning City"
+  },
+  "social": {
+    "facebook": "#",
+    "instagram": "#",
+    "twitter": "#",
+    "tiktok": "#"
+  },
+  "languages": {
+    "default": "en",
+    "supported": ["en", "ar"]
+  },
+  "pages": {
+    "home": "index",
+    "courses": "courses",
+    "course_details": "course-details",
+    "cart": "cart"
+  }
+}

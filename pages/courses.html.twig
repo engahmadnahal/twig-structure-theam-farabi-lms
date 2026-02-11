@@ -1,0 +1,269 @@
+{% extends '../layouts/base.html.twig' %}
+
+{% set active_page = 'courses' %}
+
+{% block title %}All Courses - {{ config.site.name|default('Farabi Academy') }}{% endblock %}
+
+{% block meta_description %}Browse all courses at Farabi Academy - Filter by rating, category, price, and search{% endblock %}
+
+{% block body_class %}min-h-screen bg-gray-50{% endblock %}
+
+{% block floating_buttons %}{% endblock %}
+
+{% block content %}
+    {# ==================== Page Header ==================== #}
+    <section class="bg-gradient-to-br from-gray-50 to-gray-100 py-12 pt-32">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">All Courses</h1>
+        <p class="text-xl text-gray-600">Discover our comprehensive collection of online courses</p>
+      </div>
+    </section>
+
+    {# ==================== Filters and Courses ==================== #}
+    <section class="py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col lg:flex-row gap-8">
+          <!-- Sidebar Filters -->
+          <aside class="lg:w-80 flex-shrink-0">
+            <div class="bg-white rounded-2xl p-6 shadow-lg sticky top-24">
+              <h2 class="text-xl font-bold text-gray-900 mb-6">Filters</h2>
+              
+              <!-- Search -->
+              <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Search</label>
+                <input type="text" id="searchInput" placeholder="Search courses..." class="w-full px-4 py-2 rounded-xl border border-gray-300 bg-white text-gray-900 focus:ring-2 focus:ring-pistachio focus:border-transparent transition-all" />
+              </div>
+
+              <!-- Category Filter -->
+              <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Category</label>
+                <select id="categoryFilter" class="w-full px-4 py-2 rounded-xl border border-gray-300 bg-white text-gray-900 focus:ring-2 focus:ring-pistachio focus:border-transparent transition-all">
+                  <option value="all">All Categories</option>
+                  <option value="web-development">Web Development</option>
+                  <option value="digital-marketing">Digital Marketing</option>
+                  <option value="graphic-design">Graphic Design</option>
+                  <option value="business">Business</option>
+                  <option value="photography">Photography</option>
+                  <option value="data-science">Data Science</option>
+                </select>
+              </div>
+
+              <!-- Rating Filter -->
+              <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Rating</label>
+                <div class="space-y-2">
+                  <label class="flex items-center cursor-pointer">
+                    <input type="checkbox" class="rating-filter w-4 h-4 text-pistachio border-gray-300 rounded focus:ring-pistachio" value="5">
+                    <div class="flex items-center gap-1 ml-2">
+                      {% for i in 1..5 %}
+                      <svg class="w-4 h-4 fill-pistachio text-pistachio" viewBox="0 0 24 24">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                      </svg>
+                      {% endfor %}
+                    </div>
+                  </label>
+                  <label class="flex items-center cursor-pointer">
+                    <input type="checkbox" class="rating-filter w-4 h-4 text-pistachio border-gray-300 rounded focus:ring-pistachio" value="4">
+                    <span class="ml-2 text-gray-700">4+ Stars</span>
+                  </label>
+                  <label class="flex items-center cursor-pointer">
+                    <input type="checkbox" class="rating-filter w-4 h-4 text-pistachio border-gray-300 rounded focus:ring-pistachio" value="3">
+                    <span class="ml-2 text-gray-700">3+ Stars</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Price Filter -->
+              <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Price Range</label>
+                <div class="space-y-2">
+                  <label class="flex items-center cursor-pointer">
+                    <input type="radio" name="priceFilter" value="all" class="price-filter w-4 h-4 text-pistachio border-gray-300 focus:ring-pistachio" checked>
+                    <span class="ml-2 text-gray-700">All Prices</span>
+                  </label>
+                  <label class="flex items-center cursor-pointer">
+                    <input type="radio" name="priceFilter" value="0-100" class="price-filter w-4 h-4 text-pistachio border-gray-300 focus:ring-pistachio">
+                    <span class="ml-2 text-gray-700">$0 - $100</span>
+                  </label>
+                  <label class="flex items-center cursor-pointer">
+                    <input type="radio" name="priceFilter" value="100-200" class="price-filter w-4 h-4 text-pistachio border-gray-300 focus:ring-pistachio">
+                    <span class="ml-2 text-gray-700">$100 - $200</span>
+                  </label>
+                  <label class="flex items-center cursor-pointer">
+                    <input type="radio" name="priceFilter" value="200-300" class="price-filter w-4 h-4 text-pistachio border-gray-300 focus:ring-pistachio">
+                    <span class="ml-2 text-gray-700">$200 - $300</span>
+                  </label>
+                  <label class="flex items-center cursor-pointer">
+                    <input type="radio" name="priceFilter" value="300+" class="price-filter w-4 h-4 text-pistachio border-gray-300 focus:ring-pistachio">
+                    <span class="ml-2 text-gray-700">$300+</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Clear Filters Button -->
+              <button id="clearFilters" class="w-full py-2 px-4 bg-gray-200 text-gray-700 rounded-xl hover:bg-gray-300 transition-all">
+                Clear All Filters
+              </button>
+            </div>
+          </aside>
+
+          <!-- Courses Grid -->
+          <div class="flex-1">
+            <!-- Results Count -->
+            <div class="mb-6 flex justify-between items-center">
+              <p class="text-gray-600">
+                Showing <span id="resultsCount">0</span> courses
+              </p>
+              <select id="sortBy" class="px-4 py-2 rounded-xl border border-gray-300 bg-white text-gray-900 focus:ring-2 focus:ring-pistachio focus:border-transparent transition-all">
+                <option value="default">Sort by: Default</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="rating">Highest Rated</option>
+                <option value="name">Name: A-Z</option>
+              </select>
+            </div>
+
+            <!-- Courses Container -->
+            <div id="coursesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <!-- Courses will be dynamically inserted here -->
+            </div>
+
+            <!-- No Results Message -->
+            <div id="noResults" class="hidden text-center py-12">
+              <svg class="w-24 h-24 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <p class="text-xl text-gray-600">No courses found matching your filters</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    // Courses Data
+    const courses = [
+      { id: 1, title: "Web Development Mastery", description: "Learn HTML, CSS, JavaScript, and React from scratch to advanced level", price: 299, category: "web-development", rating: 4.8, image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80", students: 12500 },
+      { id: 2, title: "Digital Marketing Pro", description: "Master SEO, social media marketing, and paid advertising strategies", price: 249, category: "digital-marketing", rating: 4.7, image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80", students: 9800 },
+      { id: 3, title: "Graphic Design Fundamentals", description: "Create stunning visuals with Adobe Photoshop, Illustrator, and Figma", price: 199, category: "graphic-design", rating: 4.9, image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&q=80", students: 15200 },
+      { id: 4, title: "Business Management", description: "Learn essential business skills from planning to execution", price: 349, category: "business", rating: 4.6, image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80", students: 8700 },
+      { id: 5, title: "Photography Masterclass", description: "From camera basics to professional photo editing techniques", price: 279, category: "photography", rating: 4.8, image: "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=800&q=80", students: 11200 },
+      { id: 6, title: "Data Science & Analytics", description: "Master Python, SQL, and data visualization for data-driven decisions", price: 399, category: "data-science", rating: 5.0, image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80", students: 18900 },
+      { id: 7, title: "UI/UX Design Bootcamp", description: "Complete guide to user interface and user experience design", price: 329, category: "graphic-design", rating: 4.7, image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80", students: 13400 },
+      { id: 8, title: "Content Marketing Strategy", description: "Learn to create engaging content that drives results", price: 229, category: "digital-marketing", rating: 4.5, image: "https://images.unsplash.com/photo-1432888622747-4eb9a8f2d523?w=800&q=80", students: 9600 },
+      { id: 9, title: "Full Stack Development", description: "Build complete web applications with modern technologies", price: 449, category: "web-development", rating: 4.9, image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80", students: 16700 },
+      { id: 10, title: "Entrepreneurship Essentials", description: "Start and grow your own business from scratch", price: 379, category: "business", rating: 4.6, image: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&q=80", students: 10200 },
+      { id: 11, title: "Video Production & Editing", description: "Create professional videos from shooting to post-production", price: 319, category: "photography", rating: 4.7, image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&q=80", students: 11800 },
+      { id: 12, title: "Machine Learning Basics", description: "Introduction to AI and machine learning concepts", price: 429, category: "data-science", rating: 4.8, image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&q=80", students: 14500 }
+    ];
+
+    let filterState = { search: '', category: 'all', rating: [], price: 'all', sortBy: 'default' };
+
+    function renderCourses(coursesToRender) {
+      const container = document.getElementById('coursesContainer');
+      const noResults = document.getElementById('noResults');
+      const resultsCount = document.getElementById('resultsCount');
+      
+      if (coursesToRender.length === 0) {
+        container.classList.add('hidden');
+        noResults.classList.remove('hidden');
+        resultsCount.textContent = '0';
+        return;
+      }
+
+      container.classList.remove('hidden');
+      noResults.classList.add('hidden');
+      resultsCount.textContent = coursesToRender.length;
+
+      container.innerHTML = coursesToRender.map(course => {
+        const stars = Math.floor(course.rating);
+        const hasHalfStar = course.rating % 1 >= 0.5;
+        let starsHTML = '';
+        for (let i = 0; i < 5; i++) {
+          if (i < stars) {
+            starsHTML += '<svg class="w-4 h-4 fill-pistachio text-pistachio" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>';
+          } else if (i === stars && hasHalfStar) {
+            starsHTML += '<svg class="w-4 h-4 fill-pistachio text-pistachio" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>';
+          } else {
+            starsHTML += '<svg class="w-4 h-4 fill-gray-300 text-gray-300" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>';
+          }
+        }
+        return `
+          <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 duration-300 course-card" data-course-id="${course.id}">
+            <div class="relative h-56 overflow-hidden">
+              <img src="${course.image}" alt="${course.title}" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500" loading="lazy" />
+              <div class="absolute top-4 right-4 bg-pistachio text-white px-4 py-2 rounded-full font-bold">$${course.price}</div>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-1 mb-2">${starsHTML}<span class="text-sm text-gray-600 ml-1">(${course.rating})</span></div>
+              <h3 class="text-xl font-bold text-gray-900 mb-3">${course.title}</h3>
+              <p class="text-gray-600 mb-4 line-clamp-2">${course.description}</p>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-sm text-gray-600">${course.students.toLocaleString()} students</span>
+                <span class="text-sm text-pistachio font-semibold">${course.category.replace('-', ' ')}</span>
+              </div>
+              <a href="course-details.html" class="block w-full py-3 bg-pistachio text-white rounded-full hover:bg-pistachio-dark transition-all hover:shadow-lg text-center">View Details</a>
+            </div>
+          </div>`;
+      }).join('');
+    }
+
+    function filterCourses() {
+      let filtered = [...courses];
+      if (filterState.search) {
+        const searchLower = filterState.search.toLowerCase();
+        filtered = filtered.filter(c => c.title.toLowerCase().includes(searchLower) || c.description.toLowerCase().includes(searchLower));
+      }
+      if (filterState.category !== 'all') filtered = filtered.filter(c => c.category === filterState.category);
+      if (filterState.rating.length > 0) {
+        const minRating = Math.min(...filterState.rating.map(r => parseInt(r)));
+        filtered = filtered.filter(c => c.rating >= minRating);
+      }
+      if (filterState.price !== 'all') {
+        filtered = filtered.filter(c => {
+          switch (filterState.price) {
+            case '0-100': return c.price <= 100;
+            case '100-200': return c.price > 100 && c.price <= 200;
+            case '200-300': return c.price > 200 && c.price <= 300;
+            case '300+': return c.price > 300;
+            default: return true;
+          }
+        });
+      }
+      switch (filterState.sortBy) {
+        case 'price-low': filtered.sort((a, b) => a.price - b.price); break;
+        case 'price-high': filtered.sort((a, b) => b.price - a.price); break;
+        case 'rating': filtered.sort((a, b) => b.rating - a.rating); break;
+        case 'name': filtered.sort((a, b) => a.title.localeCompare(b.title)); break;
+      }
+      renderCourses(filtered);
+    }
+
+    document.getElementById('searchInput').addEventListener('input', (e) => { filterState.search = e.target.value; filterCourses(); });
+    document.getElementById('categoryFilter').addEventListener('change', (e) => { filterState.category = e.target.value; filterCourses(); });
+    document.querySelectorAll('.rating-filter').forEach(cb => {
+      cb.addEventListener('change', (e) => {
+        if (e.target.checked) filterState.rating.push(e.target.value);
+        else filterState.rating = filterState.rating.filter(r => r !== e.target.value);
+        filterCourses();
+      });
+    });
+    document.querySelectorAll('.price-filter').forEach(radio => {
+      radio.addEventListener('change', (e) => { filterState.price = e.target.value; filterCourses(); });
+    });
+    document.getElementById('sortBy').addEventListener('change', (e) => { filterState.sortBy = e.target.value; filterCourses(); });
+    document.getElementById('clearFilters').addEventListener('click', () => {
+      filterState = { search: '', category: 'all', rating: [], price: 'all', sortBy: 'default' };
+      document.getElementById('searchInput').value = '';
+      document.getElementById('categoryFilter').value = 'all';
+      document.querySelectorAll('.rating-filter').forEach(cb => cb.checked = false);
+      document.querySelector('input[name="priceFilter"][value="all"]').checked = true;
+      document.getElementById('sortBy').value = 'default';
+      filterCourses();
+    });
+
+    filterCourses();
+  </script>
+{% endblock %}

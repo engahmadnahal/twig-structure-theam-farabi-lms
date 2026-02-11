@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="{{ current_locale|default('en') }}" dir="{{ current_locale|default('en') == 'ar' ? 'rtl' : 'ltr' }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{% block meta_description %}Farabi Academy - Transform Your Future with Excellence. Join thousands of students who have achieved their dreams through our world-class online academy.{% endblock %}">
+  <title>{% block title %}Farabi Academy - Online Learning Platform{% endblock %}</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{{ asset_path|default('') }}assets/css/main.css">
+  
+  <!-- Tailwind Config for Custom Colors -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pistachio: '{{ config.colors.pistachio|default("#93c572") }}',
+            'pistachio-dark': '{{ config.colors.pistachio_dark|default("#7db157") }}',
+            navy: '{{ config.colors.navy|default("#1e3a5f") }}',
+            'navy-dark': '{{ config.colors.navy_dark|default("#152a45") }}',
+          }
+        }
+      }
+    }
+  </script>
+
+  {% block head_extra %}{% endblock %}
+</head>
+<body class="{% block body_class %}min-h-screen bg-white transition-colors duration-300{% endblock %}">
+  
+  {# Include Header/Navigation #}
+  {% block header %}
+    {% include '../partials/header.html.twig' %}
+  {% endblock %}
+
+  {# Main Content #}
+  <main{% block main_attrs %}{% endblock %}>
+    {% block content %}{% endblock %}
+  </main>
+
+  {# Include Footer #}
+  {% block footer %}
+    {% include '../partials/footer.html.twig' %}
+  {% endblock %}
+
+  {# Floating Buttons #}
+  {% block floating_buttons %}
+    {% include '../partials/floating-buttons.html.twig' %}
+  {% endblock %}
+
+  {# Scripts #}
+  <script src="{{ asset_path|default('') }}assets/js/utils.js"></script>
+  <script src="{{ asset_path|default('') }}assets/js/app.js"></script>
+  {% block scripts %}{% endblock %}
+
+  {# Mobile Menu Toggle Script #}
+  <script>
+    function toggleMobileMenu() {
+      const menu = document.querySelector('[data-mobile-menu]');
+      const menuIcon = document.querySelector('[data-menu-icon="menu"]');
+      const closeIcon = document.querySelector('[data-menu-icon="close"]');
+      
+      if (menu) {
+        menu.classList.toggle('active');
+        if (menuIcon) menuIcon.classList.toggle('hidden');
+        if (closeIcon) closeIcon.classList.toggle('hidden');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const mobileMenuToggle = document.querySelector('[data-mobile-menu-toggle]');
+      if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+      }
+    });
+  </script>
+
+  {% block scripts_extra %}{% endblock %}
+</body>
+</html>

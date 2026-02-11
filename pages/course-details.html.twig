@@ -1,0 +1,337 @@
+{% extends '../layouts/base.html.twig' %}
+
+{% block title %}Web Development Mastery - {{ config.site.name|default('Farabi Academy') }}{% endblock %}
+
+{% block meta_description %}Course Details - Farabi Academy{% endblock %}
+
+{% block body_class %}min-h-screen bg-gray-50{% endblock %}
+
+{% block floating_buttons %}{% endblock %}
+
+{% block content %}
+    {# ==================== Hero Section with Video Preview ==================== #}
+    <section class="bg-gradient-to-br from-gray-900 to-gray-800 text-white pt-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid lg:grid-cols-3 gap-8">
+          <!-- Video Preview -->
+          <div class="lg:col-span-2">
+            <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-gray-800 aspect-video">
+              <div class="absolute inset-0 flex items-center justify-center">
+                <button class="w-20 h-20 bg-white/90 rounded-full flex items-center justify-center hover:bg-white transition-all transform hover:scale-110 group">
+                  <svg class="w-8 h-8 text-pistachio ml-1" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </button>
+              </div>
+              <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&q=80" alt="Course Preview" class="w-full h-full object-cover opacity-50" loading="lazy" />
+            </div>
+          </div>
+
+          <!-- Course Info Card -->
+          <div class="lg:col-span-1">
+            <div class="bg-white rounded-2xl shadow-2xl p-6 sticky top-24">
+              <div class="mb-4">
+                <span class="inline-block px-3 py-1 bg-pistachio/10 text-pistachio rounded-full text-sm font-semibold">
+                  Web Development
+                </span>
+              </div>
+              
+              <h1 class="text-2xl font-bold text-gray-900 mb-4">
+                Web Development Mastery
+              </h1>
+
+              <!-- Rating -->
+              <div class="flex items-center gap-2 mb-4">
+                <div class="flex items-center">
+                  {% for i in 1..5 %}
+                  <svg class="w-5 h-5 fill-pistachio text-pistachio" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                  {% endfor %}
+                </div>
+                <span class="text-gray-700 font-semibold">4.8</span>
+                <span class="text-gray-500 text-sm">(2,450 reviews)</span>
+              </div>
+
+              <!-- Price -->
+              <div class="mb-6">
+                <div class="flex items-baseline gap-3">
+                  <span class="text-4xl font-bold text-gray-900">$299</span>
+                  <span class="text-xl text-gray-500 line-through">$399</span>
+                  <span class="px-2 py-1 bg-red-100 text-red-600 rounded text-sm font-semibold">25% OFF</span>
+                </div>
+              </div>
+
+              <!-- Course Stats -->
+              <div class="grid grid-cols-2 gap-4 mb-6 pb-6 border-b border-gray-200">
+                <div>
+                  <div class="text-2xl font-bold text-gray-900">12,500+</div>
+                  <div class="text-sm text-gray-600">Students</div>
+                </div>
+                <div>
+                  <div class="text-2xl font-bold text-gray-900">45</div>
+                  <div class="text-sm text-gray-600">Lessons</div>
+                </div>
+                <div>
+                  <div class="text-2xl font-bold text-gray-900">8.5h</div>
+                  <div class="text-sm text-gray-600">Duration</div>
+                </div>
+                <div>
+                  <div class="text-2xl font-bold text-gray-900">All Levels</div>
+                  <div class="text-sm text-gray-600">Level</div>
+                </div>
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="space-y-3">
+                <button onclick="addToCart()" class="w-full py-4 bg-gradient-to-r from-pistachio to-green-600 text-white rounded-xl hover:from-green-600 hover:to-pistachio transition-all hover:shadow-lg transform hover:scale-[1.02] font-semibold text-lg flex items-center justify-center gap-2">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                  Add to Cart
+                </button>
+                <button class="w-full py-4 border-2 border-navy text-navy rounded-xl hover:bg-navy hover:text-white transition-all font-semibold">
+                  Buy Now
+                </button>
+              </div>
+
+              <!-- Guarantee -->
+              <div class="mt-6 p-4 bg-pistachio/10 rounded-xl">
+                <div class="flex items-start gap-3">
+                  <svg class="w-6 h-6 text-pistachio flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <div>
+                    <div class="font-semibold text-gray-900 mb-1">30-Day Money-Back Guarantee</div>
+                    <div class="text-sm text-gray-600">Full refund if you're not satisfied</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {# ==================== Course Content ==================== #}
+    <section class="py-12 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-3 gap-8">
+          <!-- Main Content -->
+          <div class="lg:col-span-2 space-y-8">
+            <!-- About Course -->
+            <div>
+              <h2 class="text-3xl font-bold text-gray-900 mb-4">About This Course</h2>
+              <p class="text-gray-600 leading-relaxed mb-4">
+                Master the fundamentals and advanced concepts of web development in this comprehensive course. 
+                Learn HTML, CSS, JavaScript, and React from scratch to build modern, responsive web applications.
+              </p>
+              <p class="text-gray-600 leading-relaxed">
+                This course is designed for beginners and intermediate developers who want to take their skills to the next level. 
+                You'll work on real-world projects and build a portfolio that showcases your abilities.
+              </p>
+            </div>
+
+            <!-- What You'll Learn -->
+            <div>
+              <h2 class="text-3xl font-bold text-gray-900 mb-6">What You'll Learn</h2>
+              <div class="grid md:grid-cols-2 gap-4">
+                {% set learnings = [
+                  'Build responsive websites with HTML5 and CSS3',
+                  'Master JavaScript ES6+ and modern frameworks',
+                  'Create dynamic user interfaces with React',
+                  'Implement RESTful APIs and backend integration',
+                  'Deploy applications to production',
+                  'Build a professional portfolio'
+                ] %}
+                {% for item in learnings %}
+                <div class="flex items-start gap-3">
+                  <svg class="w-6 h-6 text-pistachio flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span class="text-gray-700">{{ item }}</span>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+
+            <!-- Course Content Accordion -->
+            <div>
+              <h2 class="text-3xl font-bold text-gray-900 mb-6">Course Content</h2>
+              <div class="space-y-2" data-accordion>
+                {% set modules = [
+                  { title: 'Module 1: HTML & CSS Fundamentals', lessons: 12, hours: '2.5', items: ['Introduction to HTML', 'CSS Basics and Styling'] },
+                  { title: 'Module 2: JavaScript Essentials', lessons: 15, hours: '3', items: ['JavaScript Fundamentals'] },
+                  { title: 'Module 3: React Development', lessons: 18, hours: '3.5', items: ['Introduction to React'] }
+                ] %}
+
+                {% for module in modules %}
+                <div class="accordion-item bg-white rounded-xl border border-gray-200">
+                  <button class="accordion-trigger w-full p-4 flex items-center justify-between text-left">
+                    <div>
+                      <div class="font-semibold text-gray-900">{{ module.title }}</div>
+                      <div class="text-sm text-gray-600 mt-1">{{ module.lessons }} lessons &bull; {{ module.hours }} hours</div>
+                    </div>
+                    <svg class="accordion-icon w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  <div class="accordion-content hidden">
+                    <div class="px-4 pb-4 space-y-2">
+                      {% for item in module.items %}
+                      <div class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg">
+                        <svg class="w-5 h-5 text-pistachio" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span class="text-gray-700">{{ item }}</span>
+                        <span class="ml-auto text-sm text-gray-500">15:30</span>
+                      </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+
+            <!-- Instructor -->
+            <div>
+              <h2 class="text-3xl font-bold text-gray-900 mb-6">Your Instructor</h2>
+              <div class="bg-white rounded-2xl p-6 border border-gray-200">
+                <div class="flex gap-6">
+                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" alt="Instructor" class="w-24 h-24 rounded-full object-cover" loading="lazy" />
+                  <div class="flex-1">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Ahmed Hassan</h3>
+                    <p class="text-pistachio font-semibold mb-3">Senior Web Developer at Tech Corp</p>
+                    <div class="flex items-center gap-4 mb-4">
+                      <div class="flex items-center gap-1">
+                        <svg class="w-5 h-5 fill-pistachio text-pistachio" viewBox="0 0 24 24">
+                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        <span class="text-gray-700 font-semibold">4.9</span>
+                      </div>
+                      <span class="text-gray-600">Instructor Rating</span>
+                      <span class="text-gray-600">&bull;</span>
+                      <span class="text-gray-600">45,230 Students</span>
+                      <span class="text-gray-600">&bull;</span>
+                      <span class="text-gray-600">12 Courses</span>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed">
+                      With over 10 years of experience in web development, Ahmed has taught thousands of students 
+                      and helped them launch successful careers. He specializes in modern JavaScript frameworks 
+                      and full-stack development.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Reviews -->
+            <div>
+              <h2 class="text-3xl font-bold text-gray-900 mb-6">Student Reviews</h2>
+              <div class="space-y-6">
+                {% set reviews = [
+                  { name: 'Sarah Johnson', time: '2 weeks ago', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80', text: "This course exceeded my expectations! The instructor explains everything clearly and the projects are practical and relevant. I've already built my first React app thanks to this course." },
+                  { name: 'Michael Brown', time: '1 month ago', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80', text: "Great course for beginners! The step-by-step approach makes it easy to follow along. Highly recommend to anyone starting their web development journey." }
+                ] %}
+
+                {% for review in reviews %}
+                <div class="bg-white rounded-2xl p-6 border border-gray-200">
+                  <div class="flex items-start gap-4">
+                    <img src="{{ review.image }}" alt="Reviewer" class="w-12 h-12 rounded-full object-cover" loading="lazy" />
+                    <div class="flex-1">
+                      <div class="flex items-center justify-between mb-2">
+                        <div>
+                          <div class="font-semibold text-gray-900">{{ review.name }}</div>
+                          <div class="text-sm text-gray-600">{{ review.time }}</div>
+                        </div>
+                        <div class="flex items-center gap-1">
+                          {% for i in 1..5 %}
+                          <svg class="w-4 h-4 fill-pistachio text-pistachio" viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                          </svg>
+                          {% endfor %}
+                        </div>
+                      </div>
+                      <p class="text-gray-700 leading-relaxed">{{ review.text }}</p>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+
+          <!-- Sidebar Info -->
+          <div class="lg:col-span-1">
+            <div class="bg-white rounded-2xl shadow-lg p-6 sticky top-24 space-y-6">
+              <div>
+                <h3 class="font-semibold text-gray-900 mb-3">Course Includes</h3>
+                <div class="space-y-2">
+                  {% set includes = [
+                    '8.5 hours on-demand video',
+                    '45 downloadable resources',
+                    'Certificate of completion',
+                    'Full lifetime access',
+                    'Mobile and TV access'
+                  ] %}
+                  {% for item in includes %}
+                  <div class="flex items-center gap-2 text-gray-700">
+                    <svg class="w-5 h-5 text-pistachio" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>{{ item }}</span>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div class="border-t border-gray-200 pt-6">
+                <h3 class="font-semibold text-gray-900 mb-3">Course Details</h3>
+                <div class="space-y-3 text-sm">
+                  <div class="flex justify-between">
+                    <span class="text-gray-600">Language</span>
+                    <span class="text-gray-900 font-medium">English, Arabic</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-gray-600">Level</span>
+                    <span class="text-gray-900 font-medium">All Levels</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-gray-600">Updated</span>
+                    <span class="text-gray-900 font-medium">January 2024</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{{ asset_path|default('') }}assets/js/accordion.js"></script>
+  <script>
+    function addToCart() {
+      const course = {
+        id: 1,
+        title: "Web Development Mastery",
+        price: 299,
+        image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80",
+        category: "web-development"
+      };
+
+      let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+      if (cart.find(item => item.id === course.id)) {
+        alert('This course is already in your cart!');
+        return;
+      }
+      cart.push(course);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert('Course added to cart successfully!');
+    }
+    window.addToCart = addToCart;
+  </script>
+{% endblock %}

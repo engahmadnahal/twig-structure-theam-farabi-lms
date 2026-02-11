@@ -1,0 +1,153 @@
+{# Navigation Header #}
+<nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-sm" id="navigation">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-20">
+      <!-- Logo -->
+      <div class="flex-shrink-0">
+        <a href="{{ page_path|default('') }}index.html" class="flex items-center gap-2">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-pistachio to-navy flex items-center justify-center">
+            <span class="font-bold text-white">{{ config.site.logo_text|default('FA') }}</span>
+          </div>
+          <span class="font-bold text-xl text-gray-900" data-i18n="nav.brand">
+            {{ config.site.name|default('Farabi Academy') }}
+          </span>
+        </a>
+      </div>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center gap-8">
+        <a
+          href="{{ page_path|default('') }}index.html#about"
+          class="text-gray-700 hover:text-pistachio transition-colors {% if active_page|default('') == 'about' %}text-pistachio font-semibold{% endif %}"
+          data-i18n="nav.aboutUs"
+        >
+          About Us
+        </a>
+        <a
+          href="{{ page_path|default('') }}courses.html"
+          class="text-gray-700 hover:text-pistachio transition-colors {% if active_page|default('') == 'courses' %}text-pistachio font-semibold{% endif %}"
+          data-i18n="nav.ourCourses"
+        >
+          Our Courses
+        </a>
+        <a
+          href="{{ page_path|default('') }}index.html#reviews"
+          class="text-gray-700 hover:text-pistachio transition-colors {% if active_page|default('') == 'reviews' %}text-pistachio font-semibold{% endif %}"
+          data-i18n="nav.successStories"
+        >
+          Success Stories
+        </a>
+        <a
+          href="{{ page_path|default('') }}index.html#contact"
+          class="text-gray-700 hover:text-pistachio transition-colors {% if active_page|default('') == 'contact' %}text-pistachio font-semibold{% endif %}"
+          data-i18n="nav.contactUs"
+        >
+          Contact Us
+        </a>
+        
+        <!-- Action Buttons -->
+        <a
+          href="{{ page_path|default('') }}index.html#register"
+          class="px-6 py-2 bg-pistachio text-white rounded-full hover:bg-pistachio-dark transition-all hover:shadow-lg"
+          data-i18n="nav.registerNow"
+        >
+          Register Now
+        </a>
+        
+        <a
+          href="student-dashboard.html"
+          class="px-6 py-2 border-2 border-navy text-navy rounded-full hover:bg-navy hover:text-white transition-all"
+          data-i18n="nav.login"
+        >
+          Login
+        </a>
+
+        <!-- Language Toggle -->
+        <button
+          data-language-toggle
+          class="flex items-center gap-2 p-2 rounded-full hover:bg-gray-100 transition-colors"
+          aria-label="Toggle language"
+        >
+          <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span class="text-sm font-medium text-gray-700" data-language-label>EN</span>
+        </button>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden flex items-center gap-2">
+        <button
+          data-language-toggle
+          class="p-2 rounded-full hover:bg-gray-100"
+          aria-label="Toggle language"
+        >
+          <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </button>
+
+        <button
+          data-mobile-menu-toggle
+          class="p-2 rounded-lg hover:bg-gray-100"
+          aria-label="Toggle menu"
+        >
+          <svg data-menu-icon="close" class="w-6 h-6 text-gray-700 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+          <svg data-menu-icon="menu" class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu md:hidden pb-4" data-mobile-menu>
+      <div class="flex flex-col gap-3">
+        <a
+          href="{{ page_path|default('') }}index.html#about"
+          class="text-left px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+          data-i18n="nav.aboutUs"
+        >
+          About Us
+        </a>
+        <a
+          href="{{ page_path|default('') }}courses.html"
+          class="text-left px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors {% if active_page|default('') == 'courses' %}text-pistachio font-semibold{% endif %}"
+          data-i18n="nav.ourCourses"
+        >
+          Our Courses
+        </a>
+        <a
+          href="{{ page_path|default('') }}index.html#reviews"
+          class="text-left px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+          data-i18n="nav.successStories"
+        >
+          Success Stories
+        </a>
+        <a
+          href="{{ page_path|default('') }}index.html#contact"
+          class="text-left px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+          data-i18n="nav.contactUs"
+        >
+          Contact Us
+        </a>
+        <a
+          href="{{ page_path|default('') }}index.html#register"
+          class="px-4 py-2 bg-pistachio text-white rounded-lg hover:bg-pistachio-dark transition-all"
+          data-i18n="nav.registerNow"
+        >
+          Register Now
+        </a>
+        <a
+          href="student-dashboard.html"
+          class="px-4 py-2 border-2 border-navy text-navy rounded-lg hover:bg-navy hover:text-white transition-all"
+          data-i18n="nav.login"
+        >
+          Login
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>

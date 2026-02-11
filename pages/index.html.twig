@@ -1,0 +1,426 @@
+{% extends '../layouts/base.html.twig' %}
+
+{% block title %}{{ config.site.name|default('Farabi Academy') }} - Online Learning Platform{% endblock %}
+
+{% block meta_description %}Farabi Academy - Transform Your Future with Excellence. Join thousands of students who have achieved their dreams through our world-class online academy.{% endblock %}
+
+{% block content %}
+    {# ==================== Hero Section ==================== #}
+    <section id="hero" class="relative min-h-screen flex items-center pt-20 bg-gradient-to-br from-gray-50 to-gray-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <!-- Left Content -->
+          <div class="space-y-8 animate-fade-in-up">
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight" data-i18n="hero.title">
+              Transform Your Future with Excellence
+            </h1>
+            <p class="text-xl text-gray-600 leading-relaxed" data-i18n="hero.subtitle">
+              Join thousands of students who have achieved their dreams through our world-class online academy. Expert instructors, proven methods, and a supportive community await you.
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <button
+                onclick="scrollToSection('courses')"
+                class="px-8 py-4 bg-pistachio text-white rounded-full hover:bg-pistachio-dark transition-all hover:shadow-xl transform hover:scale-105"
+                data-i18n="hero.ctaButton"
+              >
+                Start Now
+              </button>
+              <button
+                onclick="scrollToSection('about')"
+                class="px-8 py-4 border-2 border-navy text-navy rounded-full hover:bg-navy hover:text-white transition-all transform hover:scale-105"
+                data-i18n="nav.aboutUs"
+              >
+                About Us
+              </button>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="grid grid-cols-3 gap-6 pt-8">
+              <div class="text-center">
+                <div class="text-3xl font-bold text-pistachio">50K+</div>
+                <div class="text-sm text-gray-600" data-i18n="stats.students">Students</div>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl font-bold text-pistachio">100+</div>
+                <div class="text-sm text-gray-600" data-i18n="stats.courses">Courses</div>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl font-bold text-pistachio">98%</div>
+                <div class="text-sm text-gray-600" data-i18n="stats.satisfaction">Satisfaction</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Content - Image Slider -->
+          <div class="relative animate-fade-in-up animation-delay-300" data-slider="hero">
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl slider-container">
+              <div class="slider-wrapper">
+                <div class="slider-slide relative">
+                  <div class="aspect-[4/3] relative">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1200&q=80" alt="Students learning online" class="w-full h-full object-cover" loading="lazy" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                  </div>
+                </div>
+                <div class="slider-slide relative">
+                  <div class="aspect-[4/3] relative">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80" alt="Collaborative learning" class="w-full h-full object-cover" loading="lazy" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                  </div>
+                </div>
+                <div class="slider-slide relative">
+                  <div class="aspect-[4/3] relative">
+                    <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1200&q=80" alt="Online education" class="w-full h-full object-cover" loading="lazy" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Custom Navigation -->
+              <button class="slider-nav-prev absolute top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/90 rounded-full flex items-center justify-center hover:bg-white transition-all shadow-lg rtl:right-4 ltr:left-4" aria-label="Previous slide">
+                <svg class="w-6 h-6 text-gray-800 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button class="slider-nav-next absolute top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/90 rounded-full flex items-center justify-center hover:bg-white transition-all shadow-lg rtl:left-4 ltr:right-4" aria-label="Next slide">
+                <svg class="w-6 h-6 text-gray-800 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+
+              <!-- Dots -->
+              <div class="slider-dots absolute bottom-4 left-1/2 -translate-x-1/2"></div>
+            </div>
+
+            <!-- Decorative Elements -->
+            <div class="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full">
+              <div class="absolute top-0 right-0 w-72 h-72 bg-pistachio/20 rounded-full blur-3xl"></div>
+              <div class="absolute bottom-0 left-0 w-72 h-72 bg-navy/20 rounded-full blur-3xl"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {# ==================== Courses Section ==================== #}
+    <section id="courses" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="text-center mb-16 animate-fade-in-up">
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4" data-i18n="courses.title">
+            What We Offer
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto" data-i18n="courses.subtitle">
+            Explore our comprehensive range of online courses designed to help you succeed
+          </p>
+        </div>
+
+        <!-- Courses Slider -->
+        <div class="relative" data-slider="courses">
+          <div class="slider-container">
+            <div class="slider-wrapper">
+              {# Course Card Macro #}
+              {% macro course_card(id, image, price, title_key, desc_key, title_default, desc_default) %}
+              <div class="slider-slide">
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 duration-300">
+                  <div class="relative h-56 overflow-hidden">
+                    <img src="{{ image }}" alt="{{ title_default }}" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500" loading="lazy" />
+                    <div class="absolute top-4 right-4 bg-pistachio text-white px-4 py-2 rounded-full font-bold">${{ price }}</div>
+                  </div>
+                  <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3" data-i18n="{{ title_key }}">{{ title_default }}</h3>
+                    <p class="text-gray-600 mb-4 line-clamp-2" data-i18n="{{ desc_key }}">{{ desc_default }}</p>
+                    <button class="w-full py-3 bg-pistachio text-white rounded-full hover:bg-pistachio-dark transition-all hover:shadow-lg" data-i18n="courses.viewDetails">
+                      View Details
+                    </button>
+                  </div>
+                </div>
+              </div>
+              {% endmacro %}
+
+              {% from _self import course_card %}
+
+              {{ course_card(1, 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80', 299, 'courses.course1.title', 'courses.course1.description', 'Web Development Mastery', 'Learn HTML, CSS, JavaScript, and React from scratch to advanced level') }}
+              {{ course_card(2, 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80', 249, 'courses.course2.title', 'courses.course2.description', 'Digital Marketing Pro', 'Master SEO, social media marketing, and paid advertising strategies') }}
+              {{ course_card(3, 'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&q=80', 199, 'courses.course3.title', 'courses.course3.description', 'Graphic Design Fundamentals', 'Create stunning visuals with Adobe Photoshop, Illustrator, and Figma') }}
+              {{ course_card(4, 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80', 349, 'courses.course4.title', 'courses.course4.description', 'Business Management', 'Learn essential business skills from planning to execution') }}
+              {{ course_card(5, 'https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=800&q=80', 279, 'courses.course5.title', 'courses.course5.description', 'Photography Masterclass', 'From camera basics to professional photo editing techniques') }}
+              {{ course_card(6, 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80', 399, 'courses.course6.title', 'courses.course6.description', 'Data Science & Analytics', 'Master Python, SQL, and data visualization for data-driven decisions') }}
+            </div>
+
+            <!-- Custom Navigation -->
+            <button class="slider-nav-prev absolute top-1/2 z-10 w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-pistachio hover:text-white transition-all shadow-lg rtl:right-0 rtl:translate-x-1/2 ltr:left-0 ltr:-translate-x-1/2" aria-label="Previous">
+              <svg class="w-6 h-6 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button class="slider-nav-next absolute top-1/2 z-10 w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-pistachio hover:text-white transition-all shadow-lg rtl:left-0 rtl:-translate-x-1/2 ltr:right-0 ltr:translate-x-1/2" aria-label="Next">
+              <svg class="w-6 h-6 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {# ==================== Statistics Section ==================== #}
+    <section id="stats" class="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+          {% set stats = [
+            { icon: 'M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z', value: 50000, suffix: '+', label_key: 'stats.students', label: 'Students' },
+            { icon: 'M15 12a3 3 0 11-6 0 3 3 0 016 0z|M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z', value: 2500000, suffix: '+', label_key: 'stats.views', label: 'Views' },
+            { icon: 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253', value: 150, suffix: '+', label_key: 'stats.courses', label: 'Courses' },
+            { icon: 'M12 14l9-5-9-5-9 5 9 5z|M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z', value: 200, suffix: '+', label_key: 'stats.instructors', label: 'Instructors' },
+            { icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z', value: 98, suffix: '%', label_key: 'stats.satisfaction', label: 'Satisfaction' }
+          ] %}
+
+          {% for stat in stats %}
+          <div class="flex flex-col items-center justify-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 duration-300">
+            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-pistachio to-navy flex items-center justify-center mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {% for path in stat.icon|split('|') %}
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ path }}" />
+                {% endfor %}
+              </svg>
+            </div>
+            <div class="text-4xl md:text-5xl font-bold text-gray-900 mb-2">
+              <span data-counter data-counter-value="{{ stat.value }}" data-counter-suffix="{{ stat.suffix }}">0</span>
+            </div>
+            <div class="text-gray-600" data-i18n="{{ stat.label_key }}">{{ stat.label }}</div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    {# ==================== Reviews Section ==================== #}
+    <section id="reviews" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="text-center mb-16 animate-fade-in-up">
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4" data-i18n="reviews.title">
+            What Our Students Say
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto" data-i18n="reviews.subtitle">
+            Real stories from real students who transformed their lives
+          </p>
+        </div>
+
+        <!-- Reviews Slider -->
+        <div class="relative" data-slider="reviews">
+          <div class="slider-container">
+            <div class="slider-wrapper">
+              {# Review Card Macro #}
+              {% macro review_card(text, image, name, role) %}
+              <div class="slider-slide">
+                <div class="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 duration-300">
+                  <div class="flex gap-1 mb-4">
+                    {% for i in 1..5 %}
+                    <svg class="w-5 h-5 fill-pistachio text-pistachio" viewBox="0 0 24 24">
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                    {% endfor %}
+                  </div>
+                  <p class="text-gray-700 mb-6 leading-relaxed">"{{ text }}"</p>
+                  <div class="flex items-center gap-4">
+                    <img src="{{ image }}" alt="{{ name }}" class="w-14 h-14 rounded-full object-cover border-2 border-pistachio" loading="lazy" />
+                    <div>
+                      <div class="font-bold text-gray-900">{{ name }}</div>
+                      <div class="text-sm text-gray-600">{{ role }}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endmacro %}
+
+              {% from _self import review_card %}
+
+              {{ review_card(
+                "This academy changed my life! The instructors are amazing and the content is top-notch. I landed my dream job just 3 months after completing the course.",
+                "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80",
+                "Sarah Johnson", "Web Developer"
+              ) }}
+              {{ review_card(
+                "The best investment I've made in my career. The practical approach and real-world projects prepared me perfectly for the industry.",
+                "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80",
+                "Ahmed Hassan", "Digital Marketer"
+              ) }}
+              {{ review_card(
+                "Outstanding quality! The course structure is perfect and the support from the community is incredible. Highly recommended!",
+                "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80",
+                "Emily Chen", "Graphic Designer"
+              ) }}
+              {{ review_card(
+                "I've taken several online courses, but this academy stands out. The knowledge I gained helped me grow my business by 300%!",
+                "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80",
+                "Michael Brown", "Business Owner"
+              ) }}
+            </div>
+
+            <!-- Custom Navigation -->
+            <button class="slider-nav-prev absolute top-1/2 z-10 w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-pistachio hover:text-white transition-all shadow-lg rtl:right-0 rtl:translate-x-1/2 ltr:left-0 ltr:-translate-x-1/2" aria-label="Previous">
+              <svg class="w-6 h-6 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button class="slider-nav-next absolute top-1/2 z-10 w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-pistachio hover:text-white transition-all shadow-lg rtl:left-0 rtl:-translate-x-1/2 ltr:right-0 ltr:translate-x-1/2" aria-label="Next">
+              <svg class="w-6 h-6 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+
+            <!-- Dots -->
+            <div class="slider-dots absolute bottom-4 left-1/2 -translate-x-1/2"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {# ==================== Why Choose Us Section ==================== #}
+    <section id="about" class="min-h-screen flex items-center py-20 bg-gradient-to-br from-gray-50 to-gray-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <!-- Section Header -->
+        <div class="text-center mb-16 animate-fade-in-up">
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4" data-i18n="whyChoose.title">
+            Why Choose Us
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto" data-i18n="whyChoose.subtitle">
+            Discover what makes our academy the best choice for your learning journey
+          </p>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {% set features = [
+            { icon: 'M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z', gradient: 'from-pistachio to-green-600', title_key: 'whyChoose.feature1Title', title: 'Expert Instructors', desc_key: 'whyChoose.feature1Desc', desc: 'Learn from industry professionals with years of real-world experience and proven teaching methods.' },
+            { icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z', gradient: 'from-navy to-blue-700', title_key: 'whyChoose.feature2Title', title: 'Flexible Learning', desc_key: 'whyChoose.feature2Desc', desc: 'Study at your own pace, anytime, anywhere. Our platform adapts to your schedule and learning style.' },
+            { icon: 'M12 4v16m8-8H4', gradient: 'from-purple-500 to-purple-700', title_key: 'whyChoose.feature3Title', title: 'Lifetime Access', desc_key: 'whyChoose.feature3Desc', desc: 'Get unlimited access to all course materials, updates, and resources even after completion.' },
+            { icon: 'M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z', gradient: 'from-orange-500 to-red-600', title_key: 'whyChoose.feature4Title', title: 'Certification', desc_key: 'whyChoose.feature4Desc', desc: 'Earn recognized certificates upon completion to boost your career and showcase your skills.' },
+            { icon: 'M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z', gradient: 'from-teal-500 to-cyan-600', title_key: 'whyChoose.feature5Title', title: 'Community Support', desc_key: 'whyChoose.feature5Desc', desc: 'Join a vibrant community of learners. Get help, share ideas, and network with peers worldwide.' },
+            { icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z', gradient: 'from-pink-500 to-rose-600', title_key: 'whyChoose.feature6Title', title: 'Affordable Pricing', desc_key: 'whyChoose.feature6Desc', desc: "Quality education shouldn't break the bank. We offer competitive prices and flexible payment options." }
+          ] %}
+
+          {% for feature in features %}
+          <div class="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 duration-300 animate-fade-in-up">
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br {{ feature.gradient }} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ feature.icon }}" />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4" data-i18n="{{ feature.title_key }}">
+              {{ feature.title }}
+            </h3>
+            <p class="text-gray-600 leading-relaxed" data-i18n="{{ feature.desc_key }}">
+              {{ feature.desc }}
+            </p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    {# ==================== Contact Section ==================== #}
+    <section id="contact" class="py-20 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="text-center mb-16 animate-fade-in-up">
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4" data-i18n="contact.title">
+            Get In Touch
+          </h2>
+          <p class="text-xl text-gray-600" data-i18n="contact.subtitle">
+            Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+          </p>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 md:p-12 shadow-xl">
+          <form data-form="contact" class="space-y-6">
+            <!-- Name Input -->
+            <div>
+              <label for="name" class="block text-sm font-medium text-gray-700 mb-2" data-i18n="contact.namePlaceholder">
+                Your Name
+              </label>
+              <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-gray-900 focus:ring-2 focus:ring-pistachio focus:border-transparent transition-all" data-i18n-placeholder="contact.namePlaceholder" placeholder="Your Name" />
+            </div>
+
+            <!-- Email Input -->
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700 mb-2" data-i18n="contact.emailPlaceholder">
+                Your Email
+              </label>
+              <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-gray-900 focus:ring-2 focus:ring-pistachio focus:border-transparent transition-all" data-i18n-placeholder="contact.emailPlaceholder" placeholder="Your Email" />
+            </div>
+
+            <!-- Message Textarea -->
+            <div>
+              <label for="message" class="block text-sm font-medium text-gray-700 mb-2" data-i18n="contact.messagePlaceholder">
+                Your Message
+              </label>
+              <textarea id="message" name="message" required rows="6" class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-gray-900 focus:ring-2 focus:ring-pistachio focus:border-transparent transition-all resize-none" data-i18n-placeholder="contact.messagePlaceholder" placeholder="Your Message"></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="w-full py-4 bg-gradient-to-r from-pistachio to-green-600 text-white rounded-xl hover:from-green-600 hover:to-pistachio transition-all hover:shadow-lg transform hover:scale-[1.02] flex items-center justify-center gap-2" data-i18n="contact.sendButton">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+              </svg>
+              <span>Send Message</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    {# ==================== FAQ Section ==================== #}
+    <section id="faq" class="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="text-center mb-16 animate-fade-in-up">
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4" data-i18n="faq.title">
+            Frequently Asked Questions
+          </h2>
+          <p class="text-xl text-gray-600" data-i18n="faq.subtitle">
+            Find answers to common questions about our academy
+          </p>
+        </div>
+
+        <!-- FAQ Accordion -->
+        <div data-accordion class="space-y-4">
+          {% set faqs = [
+            { q_key: 'faq.q1', q: 'How do I enroll in a course?', a_key: 'faq.a1', a: "Simply click on the 'Register Now' button, create an account, browse our course catalog, and select the course you want. You can pay securely online and get instant access." },
+            { q_key: 'faq.q2', q: 'Can I access courses on mobile devices?', a_key: 'faq.a2', a: 'Yes! Our platform is fully responsive and works seamlessly on all devices including smartphones, tablets, and desktop computers.' },
+            { q_key: 'faq.q3', q: 'Do you offer refunds?', a_key: 'faq.a3', a: "We offer a 30-day money-back guarantee. If you're not satisfied with your course within the first 30 days, we'll give you a full refund, no questions asked." },
+            { q_key: 'faq.q4', q: 'Are the certificates recognized?', a_key: 'faq.a4', a: 'Yes, our certificates are recognized by many employers and institutions. They demonstrate your commitment to learning and mastery of the subject.' },
+            { q_key: 'faq.q5', q: 'How long do I have access to a course?', a_key: 'faq.a5', a: 'Once you enroll in a course, you have lifetime access to all course materials, including any future updates and additions.' },
+            { q_key: 'faq.q6', q: 'Can I interact with instructors?', a_key: 'faq.a6', a: 'Absolutely! You can ask questions, participate in live Q&A sessions, and get personalized feedback from our instructors throughout your learning journey.' }
+          ] %}
+
+          {% for faq in faqs %}
+          <div class="accordion-item bg-white border border-gray-200">
+            <button class="accordion-trigger">
+              <span class="text-lg font-semibold text-gray-900" data-i18n="{{ faq.q_key }}">
+                {{ faq.q }}
+              </span>
+              <svg class="accordion-icon w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div class="accordion-content bg-white">
+              <p class="text-gray-600 leading-relaxed" data-i18n="{{ faq.a_key }}">
+                {{ faq.a }}
+              </p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{{ asset_path|default('') }}assets/js/slider.js"></script>
+  <script src="{{ asset_path|default('') }}assets/js/counter.js"></script>
+  <script src="{{ asset_path|default('') }}assets/js/accordion.js"></script>
+  <script src="{{ asset_path|default('') }}assets/js/form.js"></script>
+{% endblock %}
